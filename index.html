@@ -24,237 +24,147 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* Scanline overlay */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.15) 2px,
-      rgba(0,0,0,0.15) 4px
-    );
-    pointer-events: none;
-    z-index: 100;
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+    pointer-events: none; z-index: 100;
   }
-
-  /* Grid background */
   body::after {
     content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(240,224,64,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(240,224,64,0.04) 1px, transparent 1px);
+    position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(240,224,64,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(240,224,64,0.04) 1px, transparent 1px);
     background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
   header {
-    position: relative;
-    z-index: 10;
+    position: relative; z-index: 10;
     text-align: center;
     padding: 3rem 1rem 2rem;
     border-bottom: 1px solid rgba(240,224,64,0.2);
   }
-
   .logo {
     font-family: 'Press Start 2P', monospace;
     font-size: clamp(1.2rem, 4vw, 2.2rem);
     color: var(--accent);
-    text-shadow:
-      0 0 20px rgba(240,224,64,0.8),
-      0 0 40px rgba(240,224,64,0.4),
-      4px 4px 0 rgba(240,224,64,0.2);
+    text-shadow: 0 0 20px rgba(240,224,64,0.8), 0 0 40px rgba(240,224,64,0.4), 4px 4px 0 rgba(240,224,64,0.2);
     letter-spacing: 2px;
     animation: flicker 4s infinite;
   }
-
   @keyframes flicker {
     0%, 95%, 100% { opacity: 1; }
-    96% { opacity: 0.8; }
-    97% { opacity: 1; }
-    98% { opacity: 0.6; }
-    99% { opacity: 1; }
+    96% { opacity: 0.8; } 97% { opacity: 1; } 98% { opacity: 0.6; } 99% { opacity: 1; }
   }
-
   .tagline {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.45rem;
-    color: var(--accent2);
-    margin-top: 0.8rem;
-    letter-spacing: 3px;
+    font-family: 'Press Start 2P', monospace; font-size: 0.45rem;
+    color: var(--accent2); margin-top: 0.8rem; letter-spacing: 3px;
     text-shadow: 0 0 10px rgba(64,224,240,0.6);
   }
-
   .insert-coin {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.5rem;
-    color: var(--accent3);
-    margin-top: 1.5rem;
+    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+    color: var(--accent3); margin-top: 1.5rem;
     animation: blink 1s step-end infinite;
     text-shadow: 0 0 10px rgba(240,64,160,0.6);
   }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
   main {
-    position: relative;
-    z-index: 10;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
+    position: relative; z-index: 10;
+    max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem;
   }
-
   .section-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.6rem;
-    color: var(--muted);
-    letter-spacing: 4px;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    font-family: 'Press Start 2P', monospace; font-size: 0.6rem;
+    color: var(--muted); letter-spacing: 4px; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
   }
   .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
+    content: ''; flex: 1; height: 1px;
     background: linear-gradient(90deg, var(--muted), transparent);
   }
-
   .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
   }
-
   .game-card {
-    background: var(--card);
-    border: 1px solid rgba(240,224,64,0.15);
-    border-radius: 4px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    background: var(--card); border: 1px solid rgba(240,224,64,0.15);
+    border-radius: 4px; overflow: hidden;
+    text-decoration: none; color: inherit; display: block;
     transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
     position: relative;
   }
   .game-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(240,224,64,0.05), transparent);
-    opacity: 0;
-    transition: opacity 0.15s;
+    opacity: 0; transition: opacity 0.15s;
   }
-  .game-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(240,224,64,0.5);
-    box-shadow: 0 8px 30px rgba(240,224,64,0.15), 0 0 0 1px rgba(240,224,64,0.1);
-  }
+  .game-card:hover { transform: translateY(-4px); border-color: rgba(240,224,64,0.5); box-shadow: 0 8px 30px rgba(240,224,64,0.15), 0 0 0 1px rgba(240,224,64,0.1); }
   .game-card:hover::before { opacity: 1; }
 
   .card-screen {
-    height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    position: relative;
-    overflow: hidden;
+    height: 140px; display: flex; align-items: center;
+    justify-content: center; position: relative; overflow: hidden;
   }
-  .card-screen-connect4 {
-    background: linear-gradient(135deg, #0d1b2a, #1a2a40);
-  }
-  .card-screen-coming {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-  }
+  .card-screen-connect4 { background: linear-gradient(135deg, #0d1b2a, #1a2a40); }
+  .card-screen-othello { background: linear-gradient(135deg, #0a1f0a, #1a3a1a); }
+  .card-screen-coming { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
 
-  /* Mini connect4 preview */
   .mini-board {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 3px;
-    padding: 8px;
-    width: 140px;
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 3px; padding: 8px; width: 140px;
   }
   .mini-cell {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
+    width: 14px; height: 14px; border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.15);
     background: rgba(255,255,255,0.04);
   }
-  .mini-cell.filled {
-    background: rgba(200,200,200,0.3);
-    border-color: rgba(255,255,255,0.3);
+  .mini-cell.filled { background: rgba(200,200,200,0.3); border-color: rgba(255,255,255,0.3); }
+
+  .mini-othello {
+    display: grid; grid-template-columns: repeat(8,1fr);
+    gap: 2px; padding: 8px; width: 130px;
   }
+  .mo-cell {
+    width: 12px; height: 12px; border-radius: 2px;
+    background: #2d6a2d;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mo-piece {
+    width: 80%; height: 80%; border-radius: 50%;
+  }
+  .mo-b { background: #111; }
+  .mo-w { background: #f0f0f0; }
+  .mo-s { background: rgba(200,200,200,0.35); }
 
   .coming-soon-badge {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.4rem;
-    color: var(--muted);
-    letter-spacing: 2px;
+    font-family: 'Press Start 2P', monospace; font-size: 0.4rem;
+    color: var(--muted); letter-spacing: 2px;
     animation: blink 1.5s step-end infinite;
   }
-
-  .card-info {
-    padding: 1rem 1.2rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-
+  .card-info { padding: 1rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.05); }
   .card-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.65rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
+    font-family: 'Press Start 2P', monospace; font-size: 0.65rem;
+    color: var(--accent); margin-bottom: 0.5rem;
     text-shadow: 0 0 10px rgba(240,224,64,0.4);
   }
-
-  .card-desc {
-    font-size: 0.75rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
+  .card-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
   .card-tag {
-    display: inline-block;
-    margin-top: 0.6rem;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.35rem;
-    color: var(--accent2);
-    border: 1px solid rgba(64,224,240,0.3);
-    padding: 3px 6px;
-    border-radius: 2px;
+    display: inline-block; margin-top: 0.6rem;
+    font-family: 'Press Start 2P', monospace; font-size: 0.35rem;
+    color: var(--accent2); border: 1px solid rgba(64,224,240,0.3);
+    padding: 3px 6px; border-radius: 2px;
     text-shadow: 0 0 6px rgba(64,224,240,0.4);
   }
-
   .card-tag.multiplayer { color: var(--accent3); border-color: rgba(240,64,160,0.3); text-shadow: 0 0 6px rgba(240,64,160,0.4); }
 
   footer {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 2rem;
+    position: relative; z-index: 10; text-align: center; padding: 2rem;
     border-top: 1px solid rgba(255,255,255,0.05);
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.4rem;
-    color: var(--muted);
-    letter-spacing: 2px;
+    font-family: 'Press Start 2P', monospace; font-size: 0.4rem;
+    color: var(--muted); letter-spacing: 2px;
   }
-
-  /* Pixel corners decoration */
-  .pixel-corner {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    opacity: 0.6;
-  }
+  .pixel-corner { position: absolute; width: 6px; height: 6px; background: var(--accent); opacity: 0.6; }
   .game-card .pixel-corner:nth-child(1) { top: 0; left: 0; }
   .game-card .pixel-corner:nth-child(2) { top: 0; right: 0; }
   .game-card .pixel-corner:nth-child(3) { bottom: 0; left: 0; }
@@ -270,15 +180,12 @@
 
 <main>
   <div class="section-title">SELECT GAME</div>
-
   <div class="games-grid">
 
     <!-- Connect 4 -->
     <a href="connect4.html" class="game-card">
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
+      <div class="pixel-corner"></div><div class="pixel-corner"></div>
+      <div class="pixel-corner"></div><div class="pixel-corner"></div>
       <div class="card-screen card-screen-connect4">
         <div class="mini-board" id="miniBoard"></div>
       </div>
@@ -290,27 +197,25 @@
       </div>
     </a>
 
-    <!-- Coming Soon -->
-    <div class="game-card" style="cursor:default;">
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="card-screen card-screen-coming">
-        <div class="coming-soon-badge">COMING SOON...</div>
+    <!-- Othello -->
+    <a href="othello.html" class="game-card">
+      <div class="pixel-corner"></div><div class="pixel-corner"></div>
+      <div class="pixel-corner"></div><div class="pixel-corner"></div>
+      <div class="card-screen card-screen-othello">
+        <div class="mini-othello" id="miniOthello"></div>
       </div>
       <div class="card-info">
-        <div class="card-title" style="color:var(--muted)">???</div>
-        <div class="card-desc">次のゲームを準備中...</div>
-        <span class="card-tag">LOADING</span>
+        <div class="card-title">OTHELLO</div>
+        <div class="card-desc">半透明な駒で戦う記憶力勝負のオセロ</div>
+        <span class="card-tag multiplayer">2 PLAYERS</span>
+        <span class="card-tag">MEMORY</span>
       </div>
-    </div>
+    </a>
 
+    <!-- Coming Soon -->
     <div class="game-card" style="cursor:default;">
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
-      <div class="pixel-corner"></div>
+      <div class="pixel-corner"></div><div class="pixel-corner"></div>
+      <div class="pixel-corner"></div><div class="pixel-corner"></div>
       <div class="card-screen card-screen-coming">
         <div class="coming-soon-badge">COMING SOON...</div>
       </div>
@@ -327,20 +232,32 @@
 <footer>© GAME ARCADE — ALL RIGHTS RESERVED</footer>
 
 <script>
-  // Mini board preview
-  const pattern = [
-    0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,
-    0,0,0,1,0,0,0,
-    0,0,1,1,0,0,0,
-    0,1,0,1,1,0,0,
-    1,1,1,0,1,1,0,
+  // Connect4 mini preview
+  const pattern=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,1,0,1,1,0,0,1,1,1,0,1,1,0];
+  const mb=document.getElementById('miniBoard');
+  pattern.forEach(v=>{const c=document.createElement('div');c.className='mini-cell'+(v?' filled':'');mb.appendChild(c);});
+
+  // Othello mini preview
+  const op=[
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,2,1,0,0,0,
+    0,0,0,1,2,0,0,0,
+    0,0,0,0,1,0,0,0,
+    0,0,0,1,0,0,0,0,
+    0,0,0,0,0,0,0,0,
   ];
-  const mb = document.getElementById('miniBoard');
-  pattern.forEach(v => {
-    const c = document.createElement('div');
-    c.className = 'mini-cell' + (v ? ' filled' : '');
-    mb.appendChild(c);
+  const mo=document.getElementById('miniOthello');
+  op.forEach(v=>{
+    const cell=document.createElement('div');
+    cell.className='mo-cell';
+    if(v>0){
+      const p=document.createElement('div');
+      p.className='mo-piece '+(v===1?'mo-b':v===2?'mo-w':'mo-s');
+      cell.appendChild(p);
+    }
+    mo.appendChild(cell);
   });
 </script>
 </body>
